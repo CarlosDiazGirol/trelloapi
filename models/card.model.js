@@ -5,7 +5,7 @@ const LABELS = ['Learning Unit', 'Lab', 'Example', 'Extra', 'Kata'];
 const cardSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, 'The phone brand is required'],
+    required: true,
     maxlength: 100
   },
   description: {

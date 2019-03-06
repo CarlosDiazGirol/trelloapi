@@ -23,7 +23,7 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  Column.findByIdAndUpdate(req.params.id, req.body)
+  Column.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(column => {
       if (!column) {
         throw createError(404, 'column not found');
