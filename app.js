@@ -2,9 +2,11 @@ require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const corsConfig = require('./configs/cors.config')
 
 const columnRoutes = require('./routes/columns.routes');
 const cardsRoutes = require('./routes/cards.routes');
@@ -22,8 +24,10 @@ app.use(cookieParser());
 
 app.use(session);
 
-app.use('/columns', columnRoutes);
-app.use('/cards', cardsRoutes);
+app.use(cors())
+
+app.use('/columns',cors(corsConfig), columnRoutes);
+app.use('/cards',cors(corsConfig), cardsRoutes);
 
 app.use((req, res, next) => {
   res.locals.session = req.user;
